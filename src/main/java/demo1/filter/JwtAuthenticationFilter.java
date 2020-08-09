@@ -54,10 +54,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
        //提取jwt
         String head = httpServletRequest.getHeader(TOKEN_HEADER);
-        if (head != null  &&  !"".equals(head)){
+        if (!StringUtils.isEmpty(head)){
             if (head.startsWith(TOKEN_PREFIX)) {
                 String token = head.replace(TOKEN_PREFIX,"");
-                if (!"".equals(token)){
+                if (!StringUtils.isEmpty(token)){
                     try {
                         jwtAuthenticationHandle(token,httpServletRequest);
                     }catch (AuthenticationException e){
