@@ -1,0 +1,49 @@
+#配置web
+server:
+  port: 8081
+  servlet:
+    context-path: /
+
+
+spring:
+  #数据源
+  datasource:
+    #数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid数据源
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/userdb?&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+
+
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+#配置日志输出
+logging:
+  level:
+    root: info
+    demo1.dao: debug
+
+#配置mybatis
+mybatis-plus:
+  #注册实体类别名
+  type-aliases-package: demo1.pojo
+  #配置包扫描
+  mapper-locations: classpath*:demo1.dao.*Mapper.xml
+  #主配置
+  configuration:
+    #开启主键回填
+    use-generated-keys: true
+    #关闭缓存
+    cache-enabled: false
+    #sql显示
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启下划线转变驼峰命名
+    map-underscore-to-camel-case: true
+
+
